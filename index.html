@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Centro de lavado y detailing automotriz profesional. Cuidamos tu vehículo con calidad y dedicación.">
+<title>Lavadero & Detailing Automotriz</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body { background-color: #fff; color: #000; font-family: Arial, sans-serif; scroll-behavior: smooth; }
+  .navbar { background-color: #000; padding: 0.3rem 1rem; }
+  .navbar-nav .nav-link { color: white !important; font-size: 0.9rem; }
+  section { scroll-margin-top: 70px; }
+  #inicio { height:50vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:2rem; }
+  .service-card { transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #ddd; border-radius: 10px; position: relative; }
+  .service-card:hover { transform: scale(1.03); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .btn-primary { background-color: #000; border: none; }
+  .btn-primary:hover { background-color: #333; }
+  .cart-container { border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-top: 40px; }
+  .cart-item { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid #eee; }
+  .cart-item:last-child { border-bottom:none; }
+  .quantity-btn { border:none; background-color:#ddd; padding:2px 6px; margin:0 2px; cursor:pointer; border-radius:4px; }
+  .quantity-btn:hover { background-color:#bbb; }
+  #whatsappFloat { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color:#fff; border-radius:50%; width:60px; height:60px; display:flex; align-items:center; justify-content:center; font-size:30px; cursor:pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index:1000; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand text-white fw-bold" href="#">Lavadero & Detailing</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#historia">Historia</a></li>
+        <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="inicio">
+  <div class="container text-center">
+    <h1 class="display-5 fw-bold mb-3">Cuidamos tu vehículo como si fuera nuestro</h1>
+    <p class="lead mb-3">Especialistas en lavado, detailing y protección automotriz para autos y camionetas. Desde el lavado básico hasta el detailing profesional, nos aseguramos de que tu vehículo luzca impecable.</p>
+    <a href="#servicios" class="btn btn-primary fw-semibold">Ver Servicios</a>
+  </div>
+</section>
+
+<!-- Historia -->
+<section id="historia" class="py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Nuestra Historia</h2>
+    <p>Comenzamos como un pequeño lavadero de barrio y evolucionamos hacia un centro profesional de <strong>detailing automotriz</strong>. Cada vehículo recibe atención personalizada, con técnicas avanzadas, productos premium y personal capacitado.</p>
+    <p>Nuestro objetivo es brindar una experiencia completa: no solo limpiamos, sino que cuidamos cada detalle de tu vehículo para prolongar su vida útil y mantenerlo siempre reluciente.</p>
+  </div>
+</section>
+
+<!-- Servicios -->
+<section id="servicios" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Nuestros Servicios</h2>
+
+    <!-- Pestañas -->
+    <ul class="nav nav-tabs mb-4" id="serviceTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="autos-tab" data-bs-toggle="tab" data-bs-target="#autos" type="button">Autos</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="camionetas-tab" data-bs-toggle="tab" data-bs-target="#camionetas" type="button">Camionetas</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="serviceTabsContent">
+
+      <!-- Autos -->
+      <div class="tab-pane fade show active" id="autos">
+        <div class="row g-4">
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Lavado Básico" data-precio="450">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Lavado Básico</h5>
+                <ul>
+                  <li>Lavado exterior completo</li>
+                  <li>Limpieza de llantas y guardabarros</li>
+                  <li>Secado manual con microfibra</li>
+                  <li>Aspirado interior básico</li>
+                </ul>
+                <p class="fw-bold">Desde $450</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Aspirado y Detalle Interior" data-precio="800">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Aspirado y Detalle Interior</h5>
+                <ul>
+                  <li>Aspirado profundo de tapizados</li>
+                  <li>Limpieza de plásticos y molduras</li>
+                  <li>Desodorización interior</li>
+                </ul>
+                <p class="fw-bold">Desde $800</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Encerrado y Pulido" data-precio="3500">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Encerrado y Pulido</h5>
+                <ul>
+                  <li>Pulido completo de carrocería</li>
+                  <li>Aplicación de cera protectora</li>
+                  <li>Restauración de brillo y color</li>
+                </ul>
+                <p class="fw-bold">Desde $3.500</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Tratamiento Cerámico" data-precio="12000">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Tratamiento Cerámico</h5>
+                <ul>
+                  <li>Protección de pintura de alta duración</li>
+                  <li>Brillo y resistencia a rayones</li>
+                  <li>Lavado y secado incluido</li>
+                </ul>
+                <p class="fw-bold">Desde $12.000</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Limpieza Tapizados y Cuero" data-precio="1500">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Limpieza Tapizados y Cuero</h5>
+                <ul>
+                  <li>Limpieza profunda de asientos</li>
+                  <li>Tratamiento de cuero o tela</li>
+                  <li>Desodorización interior</li>
+                </ul>
+                <p class="fw-bold">Desde $1.500</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Limpieza Plásticos y Paneles" data-precio="600">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Limpieza Plásticos y Paneles</h5>
+                <ul>
+                  <li>Plásticos, molduras y tableros</li>
+                  <li>Protección y brillo interior</li>
+                  <li>Detalle profesional</li>
+                </ul>
+                <p class="fw-bold">Desde $600</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Camionetas -->
+      <div class="tab-pane fade" id="camionetas">
+        <div class="row g-4">
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Lavado Completo Camioneta" data-precio="1200">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Lavado Completo Camioneta</h5>
+                <ul>
+                  <li>Lavado exterior e interior completo</li>
+                  <li>Aspirado profundo</li>
+                  <li>Limpieza de llantas y guardabarros</li>
+                </ul>
+                <p class="fw-bold">Desde $1.200</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Pulido y Encerrado Camioneta" data-precio="5000">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Pulido y Encerrado Camioneta</h5>
+                <ul>
+                  <li>Pulido completo de carrocería</li>
+                  <li>Aplicación de cera o sellado cerámico</li>
+                  <li>Protección de pintura profesional</li>
+                </ul>
+                <p class="fw-bold">Desde $5.000</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card service-card h-100" data-nombre="Tratamiento Cerámico Camioneta" data-precio="15000">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Tratamiento Cerámico Camioneta</h5>
+                <ul>
+                  <li>Protección avanzada de pintura</li>
+                  <li>Brillo y durabilidad máxima</li>
+                  <li>Incluye lavado completo</li>
+                </ul>
+                <p class="fw-bold">Desde $15.000</p>
+                <button class="btn btn-primary w-100 add-to-cart">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Carrito -->
+    <div class="cart-container mt-5">
+      <h4 class="fw-bold mb-3">Tu Carrito</h4>
+      <div id="cartList"></div>
+      <p class="fw-bold mt-3">Total: $<span id="cartTotal">0</span></p>
+      <button class="btn btn-primary w-100 mb-2" id="sendCart">Enviar por WhatsApp</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Contacto</h2>
+    <p>📍 Ciudad de Las Piedras – Zona 18 de Mayo</p>
+    <p>🕗 Lunes a sábado: 8:00 a 19:00</p>
+    <p>📞 WhatsApp: +598 0000 0000 | 📩 contacto@lavadero.com.uy</p>
+    <p class="text-muted">© 2025 Lavadero & Detailing Automotriz. Todos los derechos reservados.</p>
+  </div>
+</section>
+
+<!-- Botón flotante WhatsApp -->
+<div id="whatsappFloat" onclick="openWhatsApp()">💬</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const updateCart = () => {
+    const cartList = document.getElementById('cartList');
+    const cartTotal = document.getElementById('cartTotal');
+    cartList.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+      total += item.precio * item.cantidad;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <span>${item.nombre} - $${item.precio} x ${item.cantidad}</span>
+        <span>
+          <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
+          <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
+          <button class="quantity-btn" onclick="removeItem(${index})">X</button>
+        </span>
+      `;
+      cartList.appendChild(div);
+    });
+    cartTotal.textContent = total;
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+
+  const removeItem = (i) => { cart.splice(i,1); updateCart(); };
+  const changeQuantity = (i, delta) => {  
+    cart[i].cantidad += delta;  
+    if(cart[i].cantidad<1) cart[i].cantidad=1;  
+    updateCart();  
+  };
+
+  document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const card = e.target.closest('.card');
+      const nombre = card.dataset.nombre;
+      const precio = parseInt(card.dataset.precio);
+      const existing = cart.find(item => item.nombre === nombre);
+      if(existing){ existing.cantidad += 1; }  
+      else { cart.push({nombre, precio, cantidad:1}); }
+      updateCart();
+    });
+  });
+
+  const sendCartWhatsApp = () => {
+    if(cart.length === 0){ alert('No hay servicios en el carrito'); return; }
+    let mensaje = 'Hola, quiero reservar los siguientes servicios:\n';
+    let total = 0;
+    cart.forEach(s => { mensaje += `• ${s.nombre} - $${s.precio} x ${s.cantidad}\n`; total += s.precio*s.cantidad; });
+    mensaje += `Total: $${total}`;
+    window.open(`https://wa.me/59800000000?text=${encodeURIComponent(mensaje)}`, '_blank');
+  };
+
+  document.getElementById('sendCart').addEventListener('click', sendCartWhatsApp);
+  const openWhatsApp = sendCartWhatsApp;
+
+  updateCart();
+</script>
+
+</body>
+</html>
