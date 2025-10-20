@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva tu turno - Lavadero Automotriz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #fff; color: #000; font-family: Arial, sans-serif; }
+    .container { max-width: 600px; margin-top: 50px; }
+    .form-control, .btn { margin-bottom: 15px; }
+    #confirmation { display: none; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="mb-4 text-center">Reserva tu turno</h2>
+    
+    <!-- Formulario de reserva -->
+    <form id="reservationForm">
+      <label for="service" class="form-label">Servicio:</label>
+      <select id="service" class="form-select" required>
+        <option value="">Selecciona un servicio</option>
+        <option value="Lavado Diario">Lavado Diario</option>
+        <option value="Aspirado">Aspirado</option>
+        <option value="Lavado + Aspirado">Lavado + Aspirado</option>
+        <option value="Encerrado">Encerrado</option>
+        <option value="Tratamiento Cerámico">Tratamiento Cerámico</option>
+        <option value="Tapizados e Interiores Plásticos">Tapizados e Interiores Plásticos</option>
+      </select>
+
+      <label for="date" class="form-label">Fecha:</label>
+      <input type="date" id="date" class="form-control" required>
+
+      <label for="time" class="form-label">Horario:</label>
+      <select id="time" class="form-select" required>
+        <option value="">Selecciona un horario</option>
+      </select>
+
+      <label for="name" class="form-label">Nombre:</label>
+      <input type="text" id="name" class="form-control" required>
+
+      <label for="phone" class="form-label">Teléfono:</label>
+      <input type="text" id="phone" class="form-control" required>
+
+      <label for="vehicle" class="form-label">Vehículo:</label>
+      <input type="text" id="vehicle" class="form-control" required>
+
+      <button type="submit" class="btn btn-primary w-100">Reservar turno</button>
+    </form>
+
+    <!-- Mensaje de confirmación -->
+    <div id="confirmation" class="alert alert-success">
+      <p>¡Reserva confirmada!</p>
+      <p>Envíanos un WhatsApp para confirmar: <a id="whatsappLink" target="_blank">Abrir WhatsApp</a></p>
+    </div>
+  </div>
+
+  <script>
+    const reservationForm = document.getElementById('reservationForm');
+    const dateInput = document.getElementById('date');
+    const timeSelect = document.getElementById('time');
+    const confirmationDiv = document.getElementById('confirmation');
+    const whatsappLink = document.getElementById('whatsappLink');
+
+    const WEB_APP_URL = 'TU_WEB_APP_URL_AQUI'; // <<-- Reemplazar por la URL del Web App de Google Apps Script
+
+    // Función para cargar horarios disponibles según la fecha
+    dateInput.addEventListener('change', async () => {
+      const date = dateInput.value;
+      if (!date) return;
+      
+      // Limpiar horarios previos
+      timeSelect.innerHTML = '<option value="">Cargando...</option>';
+      
+      try {
+        const response = await fetch(`${WEB_APP_URL}?date=${date}`);
+        const data = await response.json();
+        timeSelect.innerHTML = '<option value="">Selecciona un horario</option>';
+        data.availableTimes.forEach(time => {
+          const option = document.createElement('option');
+          option.value = time;
+          option.textContent = time;
+          timeSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error cargando horarios:', error);
+        timeSelect.innerHTML = '<option value="">Error al cargar horarios</option>';
+      }
+    });
+
+    // Enviar reserva
+    reservationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const reservationData = {
+        service: document.getElementById('service').value,
+        date: dateInput.value,
+        time: timeSelect.value,
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        vehicle: document.getElementById('vehicle').value
+      };
+
+      try {
+        const res = await fetch(WEB_APP_URL, {
+          method: 'POST',
+          body: JSON.stringify(reservationData)
+        });
+        const result = await res.json();
+        if (result.status === 'success') {
+          // Mostrar confirmación
+          confirmationDiv.style.display = 'block';
+          whatsappLink.href = `https://wa.me/1234567890?text=Hola,%20quiero%20confirmar%20mi%20turno%20para%20el%20${reservationData.date}%20a%20las%20${reservationData.time}%20(${reservationData.service})`;
+          reservationForm.reset();
+          timeSelect.innerHTML = '<option value="">Selecciona un horario</option>';
+        } else {
+          alert('Error: ' + result.message);
+        }
+      } catch (error) {
+        console.error('Error enviando reserva:', error);
+        alert('No se pudo procesar la reserva. Intenta nuevamente.');
+      }
+    });
+  </script>
+</body>
+</html>
